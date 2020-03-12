@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>lifecycle</title>
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <h1>{{title}}</h1>
+      <button v-on:click="randomTitle()">改变title</button>
+      <button v-on:click="destroyVm()">销毁实例</button>
+    </div>
+    <script>
+      new Vue({
+        el: "#app",
+        data: { title: "Hello World" },
+        methods: {
+          randomTitle: function() {
+            this.title =
+              "Hello" +
+              ["China", "World", "Universe"][Math.floor(Math.random() * 2.999)];
+          },
+          destroyVm: function() {
+            this.$destroy();
+          }
+        },
+        // 实例初始化之后，数据观测和事件绑定之前
+        beforeCreate: function() {
+          console.log("beforeCreate");
+        },
+        // 实例初始化完成，挂载尚未开始
+        created: function() {
+          console.log("created");
+        },
+        // 挂载之前，render函数首次被调用时
+        beforeMount: function() {
+          console.log("beforeMount");
+        },
+        // 在实例挂载到DOM节点上之后
+        mounted: function() {
+          console.log("mounted");
+        },
+        // 数据更新时，在虚拟 DOM 状态变化之前
+        beforeUpdate: function() {
+          console.log("beforeUpdate");
+        },
+        // 虚拟DOM被重新渲染之后
+        updated: function() {
+          console.log("updated");
+        },
+        // 实例销毁之前，此时实例依然可用
+        beforeDestroy: function() {
+          console.log("beforeDestroy");
+        },
+        // 实例销毁后，此时Vue实例及其子实例将完全解绑
+        destroyed: function() {
+          console.log("destroyed");
+        }
+      });
+    </script>
+  </body>
+</html>
