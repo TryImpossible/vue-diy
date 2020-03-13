@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>class style</title>
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <!-- 对象语法 -->
+    <!-- <div
+      id="app"
+      class="static"
+      v-bind:class="{active: isActive, 'text-danger': hasError}"
+    >
+      <div v-bind:class="classObject"></div>
+    </div>
+    <script>
+      var vm = new Vue({
+        el: "#app",
+        data: {
+          isActive: true,
+          hasError: false
+        },
+        computed: {
+          classObject: function() {
+            return {
+              active: this.isActive && !this.error,
+              "text-danger": this.error && this.error.type === "fatal"
+            };
+          }
+        }
+      });
+    </script> -->
+
+    <!-- 数组语法 -->
+    <!-- <div id="app2" v-bind:class="[activeClass, errorClass]"></div>
+    <script>
+      var vm = new Vue({
+        el: "#app2",
+        data: {
+          activeClass: "active",
+          errorClass: "text-danger"
+        }
+      });
+    </script>     -->
+    <!-- 渲染为 -->
+    <!-- <div class="active text-danger"></div>
+    <div v-bind:class="[isActive ? activeClass : '', errorClass]"></div>
+    <div v-bind:class="[{ active: isActive }, errorClass]"></div> -->
+
+    <!-- 用在组件上 -->
+    <!-- <script>
+      Vue.component("my-component", {
+        template: '<p class="foo bar">Hi</p>'
+      });
+      // 添加class
+      <my-component class="baz boo" />;
+      // 渲染为
+      <p class="foo bar baz boo">Hi</p>;
+    </script> -->
+
+    <!-- 绑定内联样式 -->
+    <div
+      id="app3"
+      v-bind:style="{ color: activeColor, fontSize: fontSize + 'px' }"
+    >
+      <!-- 对象语法 -->
+      <div v-bind:style="styleObject"></div>
+      <!-- 数组语法 -->
+      <div v-bind:style="[baseStyles, overridingStyles]"></div>
+    </div>
+    <script>
+      var vm = new Vue({
+        el: "#app3",
+        data: {
+          activeColor: "red",
+          fontSize: 30,
+          styleObject: { color: "red", fontSize: "13px" }
+        }
+      });
+    </script>
+  </body>
+</html>
