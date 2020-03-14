@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>conditional</title>
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <!-- v-if -->
+    <h1 v-if="awesome">Vue is awesome!</h1>
+    <h1 v-else>Oh no</h1>
+    <template v-if="ok">
+      <h1>Title</h1>
+      <p>Paragraph 1</p>
+      <p>Paragraph 2</p>
+    </template>
+
+    <!-- v-else -->
+    <div v-if="Math.random() > 0.5">
+      Now you seen me
+    </div>
+    <div v-else>
+      Now you don't
+    </div>
+
+    <!-- v-else-if -->
+    <div v-if="type === 'A'">
+      A
+    </div>
+    <div v-else-if="type === 'B'">
+      B
+    </div>
+    <div v-else-if="type === 'C'">
+      C
+    </div>
+    <div v-else>Not A/B/C</div>
+
+    <!-- 用 key 管理可利用的元素 -->
+    <template v-if="loginType === 'username'">
+      <label>Username</label>
+      <input placeholder="Enter you username" key="username-input" />
+    </template>
+    <template v-else>
+      <label>Email</label>
+      <input placeholder="Enter you email address" key="email-input" />
+    </template>
+
+    <!-- v-show -->
+    <h1 v-show="ok">Hello!</h1>
+  </body>
+</html>
