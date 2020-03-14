@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>list</title>
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <!-- 用 v-for 把一个数组对应为一组元素 -->
+    <!-- <ul id="example-1">
+      <li v-for="item in items">
+        {{item.message}}
+      </li>
+    </ul>
+    <script>
+      var example1 = new Vue({
+        el: "#example-1",
+        data: {
+          items: [{ message: "Foo" }, { message: "Bar" }]
+        }
+      });
+    </script> -->
+
+    <!-- <ul id="example-2">
+      <li v-for="(item, index) in items">
+        {{ parentMessage }} - {{index}} - {{item.message}}
+      </li>
+    </ul>
+    <script>
+      var example2 = new Vue({
+        el: "#example-2",
+        data: {
+          parentMessage: "Parent",
+          items: [{ message: "Foo" }, { message: "Bar" }]
+        }
+      });
+    </script> -->
+
+    <!-- 在 v-for 里使用对象 -->
+    <!-- <div id="v-for-object">
+      <div>
+        <ul class="demo">
+          <li v-for="value in object">
+            {{ value }}
+          </li>
+        </ul>
+      </div>
+      <div v-for="(value, name) in object">
+        {{name}}: {{value}}
+      </div>
+      <div v-for="(value, name, index) in object">
+        {{index}}. {{name}}: {{value}}
+      </div>
+    </div>
+
+    <script>
+      new Vue({
+        el: "#v-for-object",
+        data: {
+          object: {
+            title: "How to do lists in Vue",
+            author: "Jane Doe",
+            publishedAt: "2016-04-10"
+          }
+        }
+      });
+    </script> -->
+
+    <!-- 维护状态 -->
+    <!-- <div v-for="item in items" v-bind:key="item.id">
+      内容
+    </div> -->
+
+    <!-- 数组更新检测 -->
+    <!-- <script>
+      /// 变异方法
+      push();
+      pop();
+      shift();
+      unshift();
+      splice();
+      sort();
+      reverse();
+
+      /// 替换数组
+      // 例如 filter()、concat() 和 slice() 。它们不会改变原始数组，而总是返回一个新数组。当使用非变异方法时，可以用新数组替换旧数组
+    </script> -->
+
+    <!-- 对象变更检测注意事项 -->
+    <!-- <script>
+      Vue.set(vm.userProfile, "age", 27);
+      vm.$set(vm.userProfile, "age", 27);
+    </script> -->
+
+    <!-- 显示过滤/排序后的结果 -->
+    <!-- 有时，我们想要显示一个数组经过过滤或排序后的版本，而不实际改变或重置原始数据。在这种情况下，可以创建一个计算属性，来返回过滤或排序后的数组 -->
+    <!-- <ul id="example-3">
+      <li v-for="n in evenNumbers">{{n}}</li>
+      <li v-for="n in even(numbers)">{{n}}</li>
+    </ul>
+    <script>
+      new Vue({
+        el: "#example-3",
+        data: {
+          numbers: [1, 2, 3, 4, 5]
+        },
+        computed: {
+          evenNumbers: function() {
+            return this.numbers.filter(function(number) {
+              return number % 2 === 0;
+            });
+          },
+          even: function(numbers) {
+            return numbers.filter(function(number) {
+              return number % 2 === 0;
+            });
+          }
+        }
+      });
+    </script> -->
+
+    <!-- 在 v-for 里使用值范围 -->
+    <!-- <div>
+      <span v-for="n in 10">{{n}}</span>
+    </div> -->
+
+    <!-- 在 <template> 上使用 v-for -->
+    <!-- <ul>
+      <template v-for="item in items">
+        <li>{{ item.msg }}</li>
+        <li class="divider" role="presentation"></li>
+      </template>
+    </ul> -->
+
+    <!-- 在组件上使用 v-for -->
+    <div id="todo-list-example">
+      <form v-on:submit.prevent="addNewTodo">
+        <label for="new-todo">Add a todo</label>
+        <input
+          v-model="newTodoText"
+          id="new-todo"
+          placeholder="E.g Feed the cat"
+        />
+        <button>Add</button>
+      </form>
+      <ul>
+        <li
+          is="todo-item"
+          v-for="(todo, index) in todos"
+          v-bind:key="todo.id"
+          v-bind:title="todo.title"
+          v-on:remove="todos.splice(index, 1)"
+        ></li>
+      </ul>
+    </div>
+    <script>
+      Vue.component("todo-item", {
+        template:
+          "\
+    <li>\
+      {{ title }}\
+      <button v-on:click=\"$emit('remove')\">Remove</button>\
+    </li>\
+  ",
+        props: ["title"]
+      });
+      new Vue({
+        el: "#todo-list-example",
+        data: {
+          newTodoText: "",
+          todos: [
+            { id: 1, title: "Do the dishes" },
+            { id: 2, title: "Take out the trash" },
+            { id: 3, title: "Now the lawn" }
+          ],
+          nextTodoId: 4
+        },
+        methods: {
+          addNewTodo: function() {
+            this.todos.push({
+              id: this.nextTodoId++,
+              title: this.newTodoText
+            });
+            this.newTodoText = "";
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
