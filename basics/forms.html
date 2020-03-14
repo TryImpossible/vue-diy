@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>forms</title>
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <!-- <div id="example-1">
+      <input v-model="message" placeholder="edit me" />
+      <p>Message is : {{ message }}</p>
+    </div>
+    <script>
+      new Vue({
+        el: "#example-1",
+        data: {
+          message: ""
+        }
+      });
+    </script> -->
+
+    <!-- <div id="example-2">
+      <span>Multiline message is:</span>
+      <p style="white-space: pre-line;">{{message}}</p>
+      <br />
+      <textarea v-model="message" placeholder="add multiple lines"></textarea>
+    </div>
+    <script>
+      new Vue({
+        el: "#example-2",
+        data: {
+          message: ""
+        }
+      });
+    </script> -->
+
+    <!-- <div id="example-3">
+      <input type="checkbox" id="checkbox" v-model="checked" />
+      <label for="checkbox">{{checked}}</label>
+    </div>
+    <script>
+      new Vue({
+        el: "#example-3",
+        data: {
+          checked: false
+        }
+      });
+    </script> -->
+
+    <!-- <div id="example-4">
+      <input type="checkbox" id="jack" value="Jack" v-model="checkedNames" />
+      <label for="jack">Jack</label>
+      <input type="checkbox" id="john" value="John" v-model="checkedNames" />
+      <label for="john">John</label>
+      <input type="checkbox" id="mike" value="Mike" v-model="checkedNames" />
+      <label for="mike">Mike</label>
+      <br />
+      <span>Checked Names: {{ checkedNames }}</span>
+    </div>
+    <script>
+      new Vue({
+        el: "#example-4",
+        data: {
+          checkedNames: []
+        }
+      });
+    </script> -->
+
+    <!-- <div id="example-5">
+      <input type="radio" id="one" value="One" v-model="picked" />
+      <label for="one">One</label>
+      <br />
+      <input type="radio" id="two" value="Two" v-model="picked" />
+      <label for="two">Two</label>
+      <br />
+      <span>Picked: {{picked}}</span>
+    </div>
+    <script>
+      new Vue({
+        el: "#example-5",
+        data: {
+          picked: ""
+        }
+      });
+    </script> -->
+
+    <!-- <div id="example-6">
+      <select v-model="selected">
+        <option disabled value="">请选择</option>
+        <option>A</option>
+        <option>B</option>
+        <option>C</option>
+      </select>
+      <span>Selected: {{selected}}</span>
+    </div>
+    <script>
+      new Vue({
+        el: "#example-6",
+        data: {
+          selected: ""
+        }
+      });
+    </script> -->
+
+    <!-- <div id="example-7">
+      <select v-model="selected">
+        <option v-for="option in options" v-bind:value="option.value">
+          {{option.text}}
+        </option>
+      </select>
+      <span>Selected: {{selected}}</span>
+    </div>
+    <script>
+      new Vue({
+        el: "#example-7",
+        data: {
+          selected: "A",
+          options: [
+            { text: "One", value: "A" },
+            { text: "Two", value: "B" },
+            { text: "Three", value: "C" }
+          ]
+        }
+      });
+    </script> -->
+
+    <!-- 值绑定 -->
+    <!-- 当选中时，`picked` 为字符串 "a" -->
+    <input type="radio" v-model="picked" value="a" />
+
+    <!-- `toggle` 为 true 或 false -->
+    <input type="checkbox" v-model="toggle" />
+
+    <!-- 当选中第一个选项时，`selected` 为字符串 "abc" -->
+    <select v-model="selected">
+      <option value="abc">ABC</option>
+    </select>
+
+    <!-- 单选按钮 -->
+    <!--  当选中时 vm.pick === vm.a -->
+    <input type="radio" v-model="pick" v-bind:value="a" />
+
+    <!-- 选择框的选项 -->
+    <!-- // 当选中时
+typeof vm.selected // => 'object'
+vm.selected.number // => 123 -->
+    <select v-model="selected">
+      <!-- 内联对象字面量 -->
+      <option v-bind:value="{ number: 123 }">123</option>
+    </select>
+
+    <!-- 修饰符 -->
+    <!-- 你可以添加 lazy 修饰符，从而转变为使用 change 事件进行同步 -->
+    <!-- 在“change”时而非“input”时更新  -->
+    <input v-model.lzay="msg" />
+
+    <!-- 如果想自动将用户的输入值转为数值类型，可以给 v-model 添加 number 修饰符 -->
+    <input v-model.number="age" type="number" />
+
+    <!-- 如果要自动过滤用户输入的首尾空白字符，可以给 v-model 添加 trim 修饰符 -->
+    <input v-model.trim="msg" />
+  </body>
+</html>
